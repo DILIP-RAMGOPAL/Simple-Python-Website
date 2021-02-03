@@ -1,0 +1,13 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+	<title>Converter</title>
+    </head>
+    <body>
+	<p>helloo</p>
+	<form action="/convert">
+	    <input type="text" name="time">
+	    <input type="submit" value="submit">
+	</form>
+    </body>
+</html>

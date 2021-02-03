@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+	<title>Converter</title>
+    </head>
+    <body>
+	<button onclick="time()">timezone</button>
+	<button onclick="cidr()">CIDR calculator</button><br>
+	{% if time %}
+	Converted Time = {{time}}
+	{% endif %}
+	<script>
+	 function time() {
+	     var x = document.getElementById("time");
+	     if (x.style.display === "none") {
+		 x.style.display = "block";
+	     } else {
+		 x.style.display = "none";
+	     }
+	 }
+	 
+	 function cidr() {
+	     var x = document.getElementById("cidr");
+	     if (x.style.display === "none") {
+		 x.style.display = "block";
+	     } else {
+		 x.style.display = "none";
+	     }
+	 }
+	</script>
+	<div id="time" style="display:none">
+	    <form method="POST">
+		{% csrf_token %}
+		Time: <label for="time">Select a time:</label>
+		<input type="time" id="time" name="time"><br>
+		Timezone:  <label for="tz1">Choose current timezone:</label>
+		<select id="tz1" name="tz1">
+		    {% for i in timezone %}
+		    <option value={{i}}>{{i}}</option>
+		    {% endfor %}
+		</select> <br>
+		Timezone2: <label for="tz2">Choose timezone to convert to:</label>
+		<select id="tz2" name="tz2">
+		    {% for i in timezone %}
+		    <option value={{i}}>{{i}}</option>
+		    {% endfor %}
+		</select> <br><br>
+		<input type="submit" name="submit">
+	    </form>
+	</div>
+	<div id="cidr" style="display:none">
+	    <form method="POST">
+		{% csrf_token %}
+		<input type="text" name="cidr">
+		<input type="submit" name="submit">
+	    </form>
+	</div>
+    </body>
+</html>
