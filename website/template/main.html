@@ -31,15 +31,15 @@
 	<div id="time" style="display:none">
 	    <form method="POST">
 		{% csrf_token %}
-		Time: <label for="time">Select a time:</label>
+		<label for="time">Select a time:</label>
 		<input type="time" id="time" name="time"><br>
-		Timezone:  <label for="tz1">Choose current timezone:</label>
+		<label for="tz1">Choose current timezone:</label>
 		<select id="tz1" name="tz1">
 		    {% for i in timezone %}
 		    <option value={{i}}>{{i}}</option>
 		    {% endfor %}
 		</select> <br>
-		Timezone2: <label for="tz2">Choose timezone to convert to:</label>
+		<label for="tz2">Choose timezone to convert to:</label>
 		<select id="tz2" name="tz2">
 		    {% for i in timezone %}
 		    <option value={{i}}>{{i}}</option>
@@ -48,8 +48,8 @@
 		<input type="submit" name="submit">
 	    </form>
 	</div>
-	<div id="cidr" style="display:none">
-	    <form method="POST">
+	<div id="cidr" >
+	    <form method="POST" action="cidr">
 		{% csrf_token %}
 		<input type="text" name="cidr">
 		<input type="submit" name="submit">
