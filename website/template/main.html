@@ -6,9 +6,6 @@
     <body>
 	<button onclick="time()">timezone</button>
 	<button onclick="cidr()">CIDR calculator</button><br>
-	{% if time %}
-	Converted Time = {{time}}
-	{% endif %}
 	<script>
 	 function time() {
 	     var x = document.getElementById("time");
@@ -29,7 +26,7 @@
 	 }
 	</script>
 	<div id="time" style="display:none">
-	    <form method="POST">
+	    <form method="POST" action="timezone">
 		{% csrf_token %}
 		<label for="time">Select a time:</label>
 		<input type="time" id="time" name="time"><br>
@@ -48,7 +45,7 @@
 		<input type="submit" name="submit">
 	    </form>
 	</div>
-	<div id="cidr" >
+	<div id="cidr" style="display:none">
 	    <form method="POST" action="cidr">
 		{% csrf_token %}
 		<input type="text" name="cidr">

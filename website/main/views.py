@@ -1,10 +1,15 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 import datetime
 import pytz
 
 
 def homepage(request):
     ctxt = {"timezone": pytz.all_timezones}
+    return render(request, "main.html", ctxt)
+
+
+def timezone(request):
+    ctxt = {}
     if request.method == 'POST':
         time = request.POST.get("time")
         if time:
@@ -12,10 +17,7 @@ def homepage(request):
             tz2 = request.POST.get("tz2")
             time2 = convert_datetime_timezone(time, tz1, tz2)
             ctxt["time"] = time2
-            return render(request, "main.html", ctxt)
-        else:
-            return redirect("")
-    return render(request, "main.html", ctxt)
+    return render(request, "timezone.html", ctxt)
 
 
 def convert_datetime_timezone(dt, tz1, tz2):
