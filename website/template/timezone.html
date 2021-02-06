@@ -1,9 +1,46 @@
 <!DOCTYPE HTML>
+{% load static %}
 <html>
+    <head>
+	<link rel="stylesheet" type="text/css" href={% static "css/timezonecss.css" %}>
+	<script type="text/javascript" src={% static "js/timezonejs.js" %}></script>
+    </head>
     <body>
 	{% if time %}
-	Converted Time = {{time}}
-	{% endif %}<br><br>
-	<a class="btn" href="/">Back</a>
+	<div class="box">
+	    <span class="text-center">Converted time</span><br><br><br>
+	    <span class="text-center">{{time}}</span><br><br>
+	    <a class="btnback" href="timezone">Back</a>
+	</div>
+	{% else %}<br><br>
+	<div class="box">
+	    <form method="POST" action="timezone">
+		{% csrf_token %}
+		<div class="input-container">
+		    <label for="time">Enter a time:</label><br>
+		    <input type="time" id="time" name="time" required><br>
+		</div>
+		<div class="input-container">
+		    <label for="tz1">Choose the current timezone:</label><br><br>
+			<select class="select-selected" id="tz1" name="tz1">
+			{% for i in timezone %}
+			<option value={{i}}>{{i}}</option>
+			{% endfor %}
+			</select> <br>
+		</div>
+		<div class="input-container">
+		    <label for="tz2">Choose timezone to convert to:</label><br> 
+		    <select class="select-selected" id="tz2" name="tz2">
+			{% for i in timezone %}
+			<option value={{i}}>{{i}}</option>
+			{% endfor %}	    
+		    </select> <br><br>
+		</div>
+		<input class="btn" type="submit" name="submit" value="Convert time">
+	    </form><br><br>
+	    <a class="btnback" href="/">Back</a>
+	    {% endif %}
+	    
+	</div>
     </body>
 </html>

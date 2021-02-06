@@ -4,12 +4,11 @@ import pytz
 
 
 def homepage(request):
-    ctxt = {"timezone": pytz.all_timezones}
-    return render(request, "main.html", ctxt)
+    return render(request, "index.html")
 
 
 def timezone(request):
-    ctxt = {}
+    ctxt = {"timezone": pytz.all_timezones}
     if request.method == 'POST':
         time = request.POST.get("time")
         if time:
@@ -32,27 +31,28 @@ def convert_datetime_timezone(dt, tz1, tz2):
 
 
 def cidr(request):
-    cidr = request.POST.get("cidr")
-    (addrString, cidrString) = cidr.split('/')
-    addr = addrString.split('.')
-    cidr = int(cidrString)
-    mask = [0, 0, 0, 0]
-    for i in range(cidr):
-        mask[int(i/8)] = mask[int(i/8)] + (1 << (7 - i % 8))
-
-    net = []
-    for i in range(4):
-        net.append(int(addr[i]) & mask[i])
-    broad = list(net)
-    brange = 32 - cidr
-    for i in range(brange):
-        broad[3 - int(i/8)] = broad[3 - int(i/8)] + (1 << (i % 8))
-    hosts = {"first": list(net), "last": list(broad)}
-    hosts["count"] = 1
-    wildcard = []
-    for i in range(4):
-        wildcard.append(255 - mask[i])
-    for i in range(4):
-        hosts["count"] += (hosts["last"][i] - hosts["first"][i]) * 2**(8*(3-i))
-    ctxt = {"address": addrString, "netmask": mask, "wildcard": wildcard, "host1": hosts["first"], "host2": hosts["last"], "count": hosts["count"]}
+    ctxt = {}
+    if request.method == 'POST':
+        cidr = request.POST.get("cidr")
+        (addrString, cidrString) = cidr.split('/')
+        addr = addrString.split('.')
+        cidr = int(cidrString)
+        mask = [0, 0, 0, 0]
+        for i in range(cidr):
+            mask[int(i/8)] = mask[int(i/8)] + (1 << (7 - i % 8))
+        net = []
+        for i in range(4):
+            net.append(int(addr[i]) & mask[i])
+        broad = list(net)
+        brange = 32 - cidr
+        for i in range(brange):
+            broad[3 - int(i/8)] = broad[3 - int(i/8)] + (1 << (i % 8))
+        hosts = {"first": list(net), "last": list(broad)}
+        hosts["count"] = 1
+        wildcard = []
+        for i in range(4):
+            wildcard.append(255 - mask[i])
+        for i in range(4):
+            hosts["count"] += (hosts["last"][i] - hosts["first"][i]) * 2**(8*(3-i))
+        ctxt = {"address": addrString, "netmask": mask, "wildcard": wildcard, "host1": hosts["first"], "host2": hosts["last"], "count": hosts["count"]}
     return render(request, "cidr.html", ctxt)

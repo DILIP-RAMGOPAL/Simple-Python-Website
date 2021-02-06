@@ -1,13 +1,35 @@
+<!DOCTYPE HTML>
+{% load static %}
 <html>
     <head>
+	<link rel="stylesheet" type="text/css" href={% static "css/timezonecss.css" %}>
+	<script type="text/javascript" src={% static "js/timezonejs.js" %}></script>
     </head>
     <body>
-	Address : {{address}}<br>
-	Netmask : {{netmask}}<br>
-	Wildcard : {{wildcard}}<br>
-	FirstIP : {{host1}}<br>
-	LastIP : {{host2}}<br>
-	Count : {{count}}<br><br>
-	<a class="btn" href="/">Back</a>
+	{% if not count %}
+	<div class="box">
+	    <span class="text-center">Enter Cidr range</span><br>
+	    <form method="POST" action="cidr">
+	    {% csrf_token %}
+		<div class="input-container">
+		    <input type="text" name="cidr" required>
+		</div>
+		<input class="btn" type="submit" name="submit" value="Cidr details"><br><br>
+	    </form>
+	    <a class="btn" href="/">Back</a>
+	</div>
+	{% else %}
+	<div class="box">
+	    <span class="text-center">Address : {{address}}</span><br>
+	    <span class="text-center">Netmask : {{netmask}}</span><br>
+	    <span class="text-center">Wildcard : {{wildcard}}</span><br>
+	    <span class="text-center">FirstIP : {{host1}}</span><br>
+	    <span class="text-center">LastIP : {{host2}}</span><br>
+	    <span class="text-center">Count : {{count}}</span><br><br>
+	    <a class="btn" href="cidr">Back</a>
+	</div>
+	
+	{% endif %}
+	
     </body>
 </html>
