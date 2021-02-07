@@ -4,7 +4,7 @@ body{
     background-origin: content-box;
     background-repeat: no-repeat;
     background-size: cover;
-    min-height:100vh;
+    min-height:100px;
     font-family: 'Noto Sans', sans-serif;
 }
 .text-center{
@@ -15,7 +15,7 @@ body{
     display: block;
     text-align: center;
 }
-.box{
+.box {
     position:absolute;
     left:50%;
     top:50%;
@@ -23,6 +23,9 @@ body{
     background-color: white;
     border-radius:3px;
     padding:70px 100px;
+}
+.box a{
+    font-size: 15px;
 }
 .input-container{
     position:relative;
@@ -41,7 +44,6 @@ body{
     border:0;
     border-bottom:1px solid #555;  
     background:transparent;
-    width:100%;
     padding:8px 0 5px 0;
     font-size:16px;
     color:#000;
@@ -57,6 +59,7 @@ body{
     outline: none;
     border: 0;
     color: #000;
+    font-size: 20px;
     padding:10px 20px;
     text-transform:uppercase;
     margin-top:50px;
