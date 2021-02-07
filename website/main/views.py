@@ -34,8 +34,17 @@ def cidr(request):
     ctxt = {}
     if request.method == 'POST':
         cidr = request.POST.get("cidr")
+        if "/" not in cidr:
+            return render(request, "cidr.html")
         (addrString, cidrString) = cidr.split('/')
         addr = addrString.split('.')
+        if (len(addr) != 4) and (int(cidrString) < 33):
+            return render(request, "cidr.html")
+        if not (int(cidrString) < 33):
+            return render(request, "cidr.html")
+        for i in addr:
+            if not (int(i) < 256):
+                return render(request, "cidr.html")
         cidr = int(cidrString)
         mask = [0, 0, 0, 0]
         for i in range(cidr):
@@ -56,3 +65,7 @@ def cidr(request):
             hosts["count"] += (hosts["last"][i] - hosts["first"][i]) * 2**(8*(3-i))
         ctxt = {"address": addrString, "netmask": mask, "wildcard": wildcard, "host1": hosts["first"], "host2": hosts["last"], "count": hosts["count"]}
     return render(request, "cidr.html", ctxt)
+
+
+def disclaimer(request):
+    return render(request, "disclaimer.html")

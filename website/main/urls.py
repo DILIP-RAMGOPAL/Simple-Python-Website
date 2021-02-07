@@ -5,4 +5,5 @@ urlpatterns = [
     path('', views.homepage),
     path('cidr', views.cidr),
     path('timezone', views.timezone),
+    path('disclaimer', views.disclaimer),
 ]

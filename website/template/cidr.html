@@ -2,16 +2,30 @@
 {% load static %}
 <html>
     <head>
-	<link rel="stylesheet" type="text/css" href={% static "css/timezonecss.css" %}>
-	<script type="text/javascript" src={% static "js/timezonejs.js" %}></script>
+	<link rel="stylesheet" type="text/css" href={% static "css/main.css" %}>
+	<link rel="stylesheet" type="text/css" href={% static "css/converters.css" %}>
+	<div class="navbar">
+	    <img src={% static "images/logo.jpg" %} style="vertical-align:bottom"></img>
+	    <div class="home"><a href="/">Home</a></div>
+	    <div class="dropdown">
+		<button class="dropbtn">Converter 
+		    <i class="fa fa-caret-down"></i>
+		</button>
+		<div class="dropdown-content">
+		    <a href="timezone">Timezone</a>
+		    <a href="cidr">Cidr Calculator</a>
+		</div>
+	    </div>
+	    <a href="disclaimer">Disclaimer</a>
+	</div>
     </head>
     <body>
 	{% if not count %}
 	<div class="box">
-	    <span class="text-center">Enter Cidr range</span><br>
 	    <form method="POST" action="cidr">
 	    {% csrf_token %}
 		<div class="input-container">
+		    <label for="time">Enter a Cidr range:</label><br>
 		    <input type="text" name="cidr" required>
 		</div>
 		<input class="btn" type="submit" name="submit" value="Cidr details"><br><br>

@@ -2,8 +2,20 @@
 {% load static %}
 <html>
     <head>
-	<link rel="stylesheet" type="text/css" href={% static "css/timezonecss.css" %}>
-	<script type="text/javascript" src={% static "js/timezonejs.js" %}></script>
+	<link rel="stylesheet" type="text/css" href={% static "css/main.css" %}>
+	<link rel="stylesheet" type="text/css" href={% static "css/converters.css" %}>
+	<div class="navbar">
+	    <img src={% static "images/logo.jpg" %} style="vertical-align:bottom"></img>
+	    <div class="home"><a href="/">Home</a></div>
+	    <div class="dropdown">
+		<button class="dropbtn">Converter</button>
+		<div class="dropdown-content">
+		    <a href="timezone">Timezone</a>
+		    <a href="cidr">Cidr Calculator</a>
+		</div>
+	    </div>
+	    <a href="disclaimer">Disclaimer</a>
+	</div>
     </head>
     <body>
 	{% if time %}

@@ -1,7 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i&subset=greek-ext');
 
 body{
-    background-image: url("https://images.pexels.com/photos/891252/pexels-photo-891252.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
     background-position: center;
     background-origin: content-box;
     background-repeat: no-repeat;
@@ -10,7 +8,7 @@ body{
     font-family: 'Noto Sans', sans-serif;
 }
 .text-center{
-    color:#fff;	
+    color:#000;
     text-transform:uppercase;
     font-size: 23px;
     margin: -50px 0 80px 0;
@@ -22,7 +20,7 @@ body{
     left:50%;
     top:50%;
     transform: translate(-50%,-50%);
-    background-color: rgba(0, 0, 0, 0.89);
+    background-color: white;
     border-radius:3px;
     padding:70px 100px;
 }
@@ -35,7 +33,7 @@ body{
     top:0px;
     left:0px;
     font-size:16px;
-    color:#fff;	
+    color:#000;
     pointer-event:none;
     transition: all 0.5s ease-in-out;
 }
@@ -46,19 +44,19 @@ body{
     width:100%;
     padding:8px 0 5px 0;
     font-size:16px;
-    color:#fff;
+    color:#000;
 }
 .input-container input:focus{ 
     border:none;	
     outline:none;
-    border-bottom:1px solid #e74c3c;	
+    border-bottom:1px solid white;	
 }
 .btn{
-    color:#fff;
-    background-color:#e74c3c;
+    color:#000;
+    background-color:#fff;
     outline: none;
     border: 0;
-    color: #fff;
+    color: #000;
     padding:10px 20px;
     text-transform:uppercase;
     margin-top:50px;
@@ -67,11 +65,11 @@ body{
     position:relative;
 }
 .btnback{
-    color:#fff;
-    background-color:#e74c3c;
+    color:#000;
+    background-color:white;
     outline: none;
     border: 0;
-    color: #fff;
+    color: #000;
     padding:10px 20px;
     text-transform:lowercase;
     margin-top:50px;
@@ -94,7 +92,7 @@ body{
 }
 
 .select-selected {
-    background-color: #e74c3c;
+    background-color: white;
 }
 
 .select-selected:after {
@@ -114,7 +112,7 @@ body{
 }
 
 .select-items div,.select-selected {
-    color: #ffffff;
+    color: black;
     padding: 8px 16px;
     border: 1px solid transparent;
     border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
@@ -124,7 +122,7 @@ body{
 
 .select-items {
     position: absolute;
-    background-color: #e74c3c;
+    background-color: white;
     top: 100%;
     left: 0;
     right: 0;
