@@ -5,10 +5,18 @@
     <head>
 	<title>Disclaimer</title>
 	<div class="navbar">
-	    <img src={% static "images/logo.jpg" %}></img>
-	    <a class="active" href="/"><i class="fa fa-fw fa-home"></i> Home</a> 
-	    <a href=""><i class="fa fa-fw fa-search"></i> Converter</a> 
-	    <a href=disclaimer><i class="fa fa-fw fa-envelope"></i> Disclaimer</a> 
+	    <img src={% static "images/logo.jpg" %} style="vertical-align:bottom"></img>
+	    <div class="home"><a href="/">Home</a></div>
+	    <div class="dropdown">
+		<button class="dropbtn">Converter 
+		    <i class="fa fa-caret-down"></i>
+		</button>
+		<div class="dropdown-content">
+		    <a href="timezone">Timezone</a>
+		    <a href="cidr">Cidr Calculator</a>
+		</div>
+	    </div>
+	    <a href="disclaimer">Disclaimer</a>
 	</div>
     </head>
     <body><br>
