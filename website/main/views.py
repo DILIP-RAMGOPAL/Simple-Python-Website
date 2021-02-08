@@ -1,10 +1,30 @@
 from django.shortcuts import render
+from datetime import date
 import datetime
 import pytz
+import os
+import geocoder
+import reverse_geocoder as rg
 
 
 def homepage(request):
-    return render(request, "index.html")
+    now = datetime.datetime.now()
+    my_tz_name = '/'.join(os.path.realpath('/etc/localtime').split('/')[-2:])
+    my_tz = pytz.timezone(my_tz_name)
+    now = now.astimezone(my_tz)
+    current_time = now.strftime("%I:%M")
+    current_seconds = now.strftime(":%S %P")
+    timezone = my_tz
+    today = date.today()
+    date_day = today.strftime("%A")
+    date_date = today.strftime("%d %B %Y %Z")
+    g = geocoder.ip('me')
+    result = rg.search(g.latlng)
+    result_place = result[0]["name"]
+    result_district = result[0]["admin1"]
+    result_state = result[0]["admin2"]
+    ctxt = {"time": current_time, "current_seconds": current_seconds, "timezone": timezone, "date": date_day, "date_date": date_date, "g": result_place, "result_district": result_district, "result_state": result_state}
+    return render(request, "index.html", ctxt)
 
 
 def timezone(request):

@@ -22,16 +22,22 @@
 	    <a href="disclaimer">Disclaimer</a>
 	</div>
 	<hr color="#D3D3D3">
-	<div class="center">
-	    <a href="timezone">
-		<img src={% static "images/time.jpg" %} style="margin:0px 500px"></img>
-		
-	    </a>
-	    <a href="cidr">
-		<img src={% static "images/cidr.jpg" %}  ></img>
-	    </a>
-	    <h2 style="padding: 25px 480px; word-spacing: 460px;">Time-Converter Cidr-calculator</h2>
-	</div>
-	
+	<center>
+	    <div style="width:350px;height:170px;border:1px solid grey; padding: 10px; margin: 30px;">
+		<div style="text-align: left;">
+		    <p style="padding: 0 20px; font-size:24px; color: grey;"><strong style="color: #000; font-size:30px;">{{time}} </strong>{{current_seconds}}</p>
+		    <p style="padding: 0 20px; color: grey">{{date}}, {{date_date}} ({{timezone}})</p>
+		    <p style="padding: 0 20px; color: grey">{{g}}, {{result_state}}, {{result_district}}</p>
+		</div>
+	    </div>
+	</center>
+	<br><br><br><br>
+	<a href="timezone">
+	    <img src={% static "images/time.jpg" %} style="margin:0px 540px"></img>
+	</a>
+	<a href="cidr">
+	    <img src={% static "images/cidr.jpg" %}  ></img>
+	</a>
+	<h2 style="padding: 25px 530px; word-spacing: 470px;">Time-Converter CIDR-Calculator</h2>
     </body>
 </html>
