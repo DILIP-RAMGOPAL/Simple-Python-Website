@@ -1,28 +1,11 @@
-<!DOCTYPE html>
+{% extends "index.html" %}
 {% load static %}
-<html>
-    <link rel="stylesheet" type="text/css" href={% static "css/main.css" %}>
-    <head>
-	<title>Disclaimer</title>
-	<div class="navbar">
-	    <img src={% static "images/logo.jpg" %} style="vertical-align:bottom"></img>
-	    <div class="home"><a href="/">Home</a></div>
-	    <div class="dropdown">
-		<button class="dropbtn">Converter 
-		    <i class="fa fa-caret-down"></i>
-		</button>
-		<div class="dropdown-content">
-		    <a href="timezone">Timezone</a>
-		    <a href="cidr">Cidr Calculator</a>
-		</div>
-	    </div>
-	    <a href="disclaimer">Disclaimer</a>
-	</div>
-    </head>
-    <body><br>
-	<div style="text-align: center; font-size: 30px;">
-	    <br><br><br><br><br><br><br>
-	    Information on this website is for general information purposes only and provided without warranty of any kind.<br> Information may contain technical inaccuracies. Information may be changed or updated without notice. <br><br>allinoneconvertor.com and it's owners are not responsible for any losses arising from such errors, inaccuracies or interruptions.allinoneconvertor.com cannot be held responsible for the user generated messages linked to our services. <br>You use the information at your own risk. 
-	</div>
-    </body>
-</html>
+{% block content %}
+<body><br>
+    <div style="text-align: center; font-size: 30px;">
+	<br><br><br><br><br><br><br>
+	Information on this website is for general information purposes only and provided without warranty of any kind.<br> Information may contain technical inaccuracies. Information may be changed or updated without notice. <br><br>allinoneconvertor.com and it's owners are not responsible for any losses arising from such errors, inaccuracies or interruptions.allinoneconvertor.com cannot be held responsible for the user generated messages linked to our services. <br>You use the information at your own risk. 
+    </div>
+</body>
+{% endblock content %}
+

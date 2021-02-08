@@ -3,25 +3,38 @@
 <html>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href={% static "css/main.css" %}>
+    <link rel="stylesheet" type="text/css" href={% static "css/index.css" %}>
     <head>
 	<title>AllInOneConvertor</title>
 	<meta charset="utf-8">
     </head>
     <body>
-	<div class="navbar">
-	    <img src={% static "images/logo.jpg" %} style="vertical-align:bottom"></img>
-	    <div class="home"><a href="/">Home</a></div>
-	    <div class="dropdown">
-		<button class="dropbtn">Converter</button>
-		<div class="dropdown-content">
-		    <a href="timezone">Timezone</a>
-		    <a href="cidr">Cidr Calculator</a>
-		</div>
-	    </div>
-	    <a href="disclaimer">Disclaimer</a>
-	</div>
+	<table>
+	    <thead>
+	    <tr>
+		<th>
+		    <img src={% static "images/logo.jpg" %}></img>
+		</th>
+		<td>
+		    <a style="color: black; text-decoration: none;" href="/">Home</a>
+		</td>
+		<td>
+		    <div class="dropdown">
+			<button class="dropbtn">Converter</button>
+			<div class="dropdown-content">
+			    <a href="timezone">Timezone</a>
+			    <a href="cidr">Cidr Calculator</a>
+			</div>
+		    </div>
+		</td>
+		<td>
+		    <a href="disclaimer" style="color: black; text-decoration: none;">Disclaimer</a>
+		</td>
+	    </tr>
+	    </thead>
+	</table>
 	<hr color="#D3D3D3">
+	{% block content %}
 	<center>
 	    <div style="width:350px;height:170px;border:1px solid grey; padding: 10px; margin: 30px;">
 		<div style="text-align: left;">
@@ -32,12 +45,32 @@
 	    </div>
 	</center>
 	<br><br><br><br>
-	<a href="timezone">
-	    <img src={% static "images/time.jpg" %} style="margin:0px 540px"></img>
-	</a>
-	<a href="cidr">
-	    <img src={% static "images/cidr.jpg" %}  ></img>
-	</a>
-	<h2 style="padding: 25px 530px; word-spacing: 470px;">Time-Converter CIDR-Calculator</h2>
+	<center>
+	    <table style="width:1200px">
+		<tr>
+		    <th>
+			<a href="timezone">
+			    <img src={% static "images/time.jpg" %}></img>
+			</a>
+		    </th>
+		    <th rowspan=2>
+		    </th>
+		    <th>
+			<a href="cidr">
+			    <img src={% static "images/cidr.jpg" %}></img>
+			</a>
+		    </th>
+		</tr>
+		<tr>
+		    <th>
+			<h2>Time Converter</h2>
+		    </th>
+		    <th>
+			<h2>CIDR Calculator</h2>
+		    </th>
+		</tr>
+	    </table>
+	</center>
+	{% endblock content %}
     </body>
 </html>

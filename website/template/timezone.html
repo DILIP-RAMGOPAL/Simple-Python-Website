@@ -1,58 +1,33 @@
-<!DOCTYPE HTML>
+{% extends "index.html" %}
 {% load static %}
-<html>
-    <head>
-	<link rel="stylesheet" type="text/css" href={% static "css/main.css" %}>
-	<link rel="stylesheet" type="text/css" href={% static "css/converters.css" %}>
-	<div class="navbar">
-	    <img src={% static "images/logo.jpg" %} style="vertical-align:bottom"></img>
-	    <div class="home"><a href="/">Home</a></div>
-	    <div class="dropdown">
-		<button class="dropbtn">Converter</button>
-		<div class="dropdown-content">
-		    <a href="timezone">Timezone</a>
-		    <a href="cidr">Cidr Calculator</a>
-		</div>
-	    </div>
-	    <a href="disclaimer">Disclaimer</a>
-	</div>
-    </head>
+{% block content %}
+<center style="padding:150px">
     <body>
 	{% if time %}
-	<div class="box">
-	    <span class="text-center">Converted time</span><br><br><br>
-	    <span class="text-center">{{time}}</span><br><br>
-	    <a class="btnback" href="timezone">Back</a>
-	</div>
+	<h2>Converted time</h2>
+	<h2>{{time}}</h2><br><br>
+	<a href="timezone" style="color: black; text-decoration: none;">Back</a>
 	{% else %}<br><br>
-	<div class="box">
-	    <form method="POST" action="timezone">
-		{% csrf_token %}
-		<div class="input-container">
-		    <label for="time">Enter a time:</label><br>
-		    <input type="time" id="time" name="time" required><br>
-		</div>
-		<div class="input-container">
-		    <label for="tz1">Choose the current timezone:</label><br><br>
-			<select class="select-selected" id="tz1" name="tz1">
-			{% for i in timezone %}
-			<option value={{i}}>{{i}}</option>
-			{% endfor %}
-			</select> <br>
-		</div>
-		<div class="input-container">
-		    <label for="tz2">Choose timezone to convert to:</label><br> 
-		    <select class="select-selected" id="tz2" name="tz2">
-			{% for i in timezone %}
-			<option value={{i}}>{{i}}</option>
-			{% endfor %}	    
-		    </select> <br><br>
-		</div>
-		<input class="btn" type="submit" name="submit" value="Convert time">
-	    </form><br><br>
-	    <a class="btnback" href="/">Back</a>
-	    {% endif %}
-	    
-	</div>
+	<form method="POST" action="timezone">
+	    {% csrf_token %}
+	    <h2>Enter a time:</h2>
+	    <input type="time" id="time" name="time" required><br>
+	    <h2>Choose the current timezone:</h2>
+	    <select class="select-selected" id="tz1" name="tz1"><br>
+		{% for i in timezone %}
+		<option value={{i}}>{{i}}</option>
+		{% endfor %}
+	    </select> <br>
+	    <h2>Choose timezone to convert to:</h2> 
+	    <select class="select-selected" id="tz2" name="tz2"><br>
+		{% for i in timezone %}
+		<option value={{i}}>{{i}}</option>
+		{% endfor %}	    
+	    </select> <br><br>
+	    <input class="btn" type="submit" name="submit" value="Convert time">
+	</form><br><br>
+	<a style="color: black; text-decoration: none;" href="/">Back</a>
+	{% endif %}
     </body>
-</html>
+</center>
+{% endblock content %}
