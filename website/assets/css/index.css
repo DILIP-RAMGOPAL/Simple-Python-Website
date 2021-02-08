@@ -28,9 +28,6 @@ td {
   margin: 0;
 }
 
- .dropdown:hover .dropbtn {
-  color: blue;
-}
 
 .dropdown-content {
   display: none;

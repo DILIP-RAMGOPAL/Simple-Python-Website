@@ -1,29 +1,30 @@
 {% extends "index.html" %}
 {% load static %}
 {% block content %}
-<center style="padding:200px">
+<center style="padding:150px">
     <body>
 	{% if not count %}
-	<div class="box">
+	<div style="width:350px;height:250px;border:1px solid grey; padding: 10px; margin: 30px;">
 	    <form method="POST" action="cidr">
 		{% csrf_token %}
 		<div class="input-container">
 		    <h2>Enter a Cidr range:</h2>
 		    <input type="text" name="cidr" required><br><br><br>
 		</div>
-		<input class="btn" type="submit" name="submit" value="Cidr details"><br><br><br><br>
+		<input class="btn" type="submit" name="submit" value="Cidr details" style="border: none; font-size:25px"><br><br><br><br>
 	    </form>
 	    <a style="color: black; text-decoration: none;" href="/">Back</a>
 	</div>
 	{% else %}
-	<h2>Address : {{address}}</h2>
-	<h2>Netmask : {{netmask}}</h2>
-	<h2>Wildcard : {{wildcard}}</h2>
-	<h2>FirstIP : {{host1}}</h2>
-	<h2>LastIP : {{host2}}</h2>
-	<h2>Count : {{count}}</h2><br>
-	<a style="color: black; text-decoration: none;" href="cidr">Back</a>
-	
+	<div style="width:350px;height:350px;border:1px solid grey; padding: 10px; margin: 30px;">
+	    <h2>Address : {{address}}</h2>
+	    <h2>Netmask : {{netmask}}</h2>
+	    <h2>Wildcard : {{wildcard}}</h2>
+	    <h2>FirstIP : {{host1}}</h2>
+	    <h2>LastIP : {{host2}}</h2>
+	    <h2>Count : {{count}}</h2><br>
+	    <a style="color: black; text-decoration: none;" href="cidr">Back</a>
+	</div>
 	{% endif %}
 	
     </body>
