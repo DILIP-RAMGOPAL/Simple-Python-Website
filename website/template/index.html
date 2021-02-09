@@ -15,10 +15,23 @@
 	     var min = d.getMinutes();
 	     var sec = d.getSeconds();
 	     var en = 'am'
-	     	     if (hrs > 12) {
+	     if (hrs > 12) {
 		 en = 'pm';
-		     }
-	     document.getElementById("demo").innerHTML = hrs + ":" + min;
+	     }
+	     if (hrs < 10 && min < 10){
+		 document.getElementById("demo").innerHTML = "0" + hrs + ":" + "0" + min;
+	     }
+	     else {
+		 if (min < 10){
+		     document.getElementById("demo").innerHTML = hrs + ":" + "0" + min;
+		 }
+		 else if (hrs < 10){
+		     document.getElementById("demo").innerHTML = "0" + hrs + ":" + min;
+		 }
+		 else {
+		     document.getElementById("demo").innerHTML = hrs + ":" + min;
+		 }
+	     }
 	     document.getElementById("sec").innerHTML = ":" + sec + " " + en;
 	 }
 	</script>
