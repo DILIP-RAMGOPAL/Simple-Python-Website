@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from datetime import date
+from django.utils import timezone
 import datetime
 import pytz
 import os
@@ -23,6 +24,7 @@ def homepage(request):
     result_place = result[0]["name"]
     result_district = result[0]["admin1"]
     result_state = result[0]["admin2"]
+#    timezone.activate(pytz.timezone(my_tz))
     ctxt = {"time": current_time, "current_seconds": current_seconds, "timezone": timezone, "date": date_day, "date_date": date_date, "g": result_place, "result_district": result_district, "result_state": result_state}
     return render(request, "index.html", ctxt)
 

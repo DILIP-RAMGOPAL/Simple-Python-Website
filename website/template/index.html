@@ -7,30 +7,45 @@
     <head>
 	<title>AllInOneConvertor</title>
 	<meta charset="utf-8">
+	<script>
+	 var myVar = setInterval(myTimer, 1000);
+	 function myTimer() {
+	     var d = new Date();
+	     var hrs = d.getHours();
+	     var min = d.getMinutes();
+	     var sec = d.getSeconds();
+	     var en = 'am'
+	     	     if (hrs > 12) {
+		 en = 'pm';
+		     }
+	     document.getElementById("demo").innerHTML = hrs + ":" + min;
+	     document.getElementById("sec").innerHTML = ":" + sec + " " + en;
+	 }
+	</script>
     </head>
     <body>
 	<table>
 	    <thead>
-	    <tr>
-		<th>
-		    <img src={% static "images/logo.jpg" %}></img>
-		</th>
-		<td>
-		    <a style="color: black; text-decoration: none;" href="/">Home</a>
-		</td>
-		<td>
-		    <div class="dropdown">
-			<button class="dropbtn">Converter</button>
-			<div class="dropdown-content">
-			    <a href="timezone">Time Converter</a>
-			    <a href="cidr">CIDR Calculator</a>
+		<tr>
+		    <th>
+			<img src={% static "images/logo.jpg" %}></img>
+		    </th>
+		    <td>
+			<a style="color: black; text-decoration: none;" href="/">Home</a>
+		    </td>
+		    <td>
+			<div class="dropdown">
+			    <button class="dropbtn">Converter</button>
+			    <div class="dropdown-content">
+				<a href="timezone">Time Converter</a>
+				<a href="cidr">CIDR Calculator</a>
+			    </div>
 			</div>
-		    </div>
-		</td>
-		<td>
-		    <a href="disclaimer" style="color: black; text-decoration: none;">Disclaimer</a>
-		</td>
-	    </tr>
+		    </td>
+		    <td>
+			<a href="disclaimer" style="color: black; text-decoration: none;">Disclaimer</a>
+		    </td>
+		</tr>
 	    </thead>
 	</table>
 	<hr color="#D3D3D3">
@@ -38,7 +53,7 @@
 	<center>
 	    <div style="width:350px;height:170px;border:1px solid grey; padding: 10px; margin: 30px;">
 		<div style="text-align: left;">
-		    <p style="padding: 0 20px; font-size:24px; color: grey;"><strong style="color: #000; font-size:30px;">{{time}} </strong>{{current_seconds}}</p>
+		    <p style="padding: 0 20px; font-size:40px; display: inline;" id="demo"/><p style="font-size:25px; color: grey; display: inline;" align="right" id="sec"/>
 		    <p style="padding: 0 20px; color: grey">{{date}}, {{date_date}} ({{timezone}})</p>
 		    <p style="padding: 0 20px; color: grey">{{g}}, {{result_state}}, {{result_district}}</p>
 		</div>
