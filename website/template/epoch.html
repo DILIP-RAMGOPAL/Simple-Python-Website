@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+<head>
+</head>
+<center style="padding:150px">
+    <body>
+	{% if not time %}
+	<div style="width:350px;height:250px;border:1px solid grey; padding: 10px; margin: 30px;">
+	    <form method="POST" action="epoch">
+		{% csrf_token %}
+		<div class="input-container">
+		    <h2>Enter a epoch number:</h2>
+		    <input type="text" name="epoch" required><br><br><br>
+		</div>
+		<input class="btn" type="submit" name="submit" value="Epoch timestamp" style="border: none; font-size:25px"><br><br><br><br>
+	    </form>
+	    <a style="color: black; text-decoration: none;" href="/">Back</a>
+	</div>
+	{% else %}
+	<div style="width:350px;height:350px;border:1px solid grey; padding: 10px; margin: 30px;">
+	    <h2>Local Time <br> {{time}}</h2><br><br><br>
+	    <h2>UTC Time <br> {{time_utc}}</h2><br><br>
+	    <a style="color: black; text-decoration: none;" href="epoch">Back</a>
+	</div>
+	{% endif %}
+    </body>
+</center>
+{% endblock content %}

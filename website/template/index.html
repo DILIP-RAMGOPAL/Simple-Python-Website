@@ -3,7 +3,7 @@
 <html>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href={% static "css/index.css" %}>
+    <link rel="stylesheet" type="text/css" href={% static "css/index2.css" %}>
     <head>
 	<title>AllInOneConvertor</title>
 	<meta charset="utf-8">
@@ -33,7 +33,21 @@
 		     document.getElementById("demo").innerHTML = hrs + ":" + min;
 		 }
 	     }
-	     document.getElementById("sec").innerHTML = ":" + sec + " " + en;
+	     if ( sec < 10 ){
+		 document.getElementById("sec").innerHTML = ":" + 0 + sec + " " + en;
+	     }
+	     else{
+		 document.getElementById("sec").innerHTML = ":" + sec + " " + en;
+	     }
+	 }
+	 function timezone_converter(color) {
+	     document.getElementById('timezone_converter').style.color = color;
+	 }
+	 function cidr_calculator(color) {
+	     document.getElementById('cidr_calculator').style.color = color;
+	 }
+	 function epoch_converter(color) {
+	     document.getElementById('epoch_converter').style.color = color;
 	 }
 	</script>
     </head>
@@ -42,10 +56,12 @@
 	    <thead>
 		<tr>
 		    <th>
-			<img src={% static "images/logo.jpg" %}></img>
+			<a href="/" text-decoration: none;">
+			    <img src={% static "images/logo.jpg" %}></img>
+			</a>
 		    </th>
 		    <td>
-			<a style="color: black; text-decoration: none;" href="/">Home</a>
+			<a class="content" style="text-decoration: none;" href="/">Home</a>
 		    </td>
 		    <td>
 			<div class="dropdown">
@@ -53,11 +69,12 @@
 			    <div class="dropdown-content">
 				<a href="timezone">Time Converter</a>
 				<a href="cidr">CIDR Calculator</a>
+				<a href="epoch">Epoch timestamp</a>
 			    </div>
 			</div>
 		    </td>
 		    <td>
-			<a href="disclaimer" style="color: black; text-decoration: none;">Disclaimer</a>
+			<a class="content" href="disclaimer" style="text-decoration: none;">Disclaimer</a>
 		    </td>
 		</tr>
 	    </thead>
@@ -67,8 +84,8 @@
 	<center>
 	    <div style="width:350px;height:170px;border:1px solid grey; padding: 10px; margin: 30px;">
 		<div style="text-align: left;">
-		    <p style="padding: 0 20px; font-size:40px; display: inline;" id="demo"/><p style="font-size:25px; color: grey; display: inline;" align="right" id="sec"/>
-		    <p style="padding: 0 20px; color: grey">{{date}}, {{date_date}} ({{timezone}})</p>
+		    <p style="padding: 0 20px; font-size:50px; display: inline;" id="demo"/><p style="font-size:25px; color: grey; display: inline;" align="right" id="sec"/>
+		    <p style="padding: 0 20px; color: grey"><br>{{date}}, {{date_date}} ({{timezone}})</p>
 		    <p style="padding: 0 20px; color: grey">{{g}}, {{result_state}}, {{result_district}}</p>
 		</div>
 	    </div>
@@ -78,24 +95,35 @@
 	    <table style="width:1200px">
 		<tr>
 		    <th>
-			<a href="timezone">
+			<a onmouseover="timezone_converter('blue')" onmouseout="timezone_converter('black')" href="timezone">
 			    <img src={% static "images/time.jpg" %}></img>
 			</a>
 		    </th>
 		    <th rowspan=2>
 		    </th>
 		    <th>
-			<a href="cidr">
+			<a onmouseover="cidr_calculator('blue')" onmouseout="cidr_calculator('black')" href="cidr">
 			    <img src={% static "images/cidr.jpg" %}></img>
 			</a>
 		    </th>
+		    <th rowspan=2>
+		    </th>
+		    <th>
+			<a onmouseover="epoch_converter('blue')" onmouseout="epoch_converter('black')" href="epoch">
+			    <img src={% static "images/epoch.jpg" %}></img>
+			</a>
+		    </th>
+
 		</tr>
 		<tr>
 		    <th>
-			<h2>Time Converter</h2>
+			<h2 id="timezone_converter">Time Converter</h2>
 		    </th>
 		    <th>
-			<h2>CIDR Calculator</h2>
+			<h2 id="cidr_calculator">CIDR Calculator</h2>
+		    </th>
+		    <th>
+			<h2 id="epoch_converter">Epoch Converter</h2>
 		    </th>
 		</tr>
 	    </table>

@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from datetime import date
-from django.utils import timezone
 import datetime
 import pytz
 import os
@@ -24,12 +23,11 @@ def homepage(request):
     result_place = result[0]["name"]
     result_district = result[0]["admin1"]
     result_state = result[0]["admin2"]
-#    timezone.activate(pytz.timezone(my_tz))
     ctxt = {"time": current_time, "current_seconds": current_seconds, "timezone": timezone, "date": date_day, "date_date": date_date, "g": result_place, "result_district": result_district, "result_state": result_state}
     return render(request, "index.html", ctxt)
 
 
-def timezone(request):
+def convert_timezone(request):
     ctxt = {"timezone": pytz.all_timezones}
     if request.method == 'POST':
         time = request.POST.get("time")
@@ -83,10 +81,44 @@ def cidr(request):
         wildcard = []
         for i in range(4):
             wildcard.append(255 - mask[i])
+        final_mask = ""
+        final_wildcard = ""
+        final_firstip = ""
+        final_lastip = ""
+        for i in str(mask):
+            if i == ",":
+                final_mask += "."
+                continue
+            final_mask += i
+        for i in str(wildcard):
+            if i == ",":
+                final_wildcard += "."
+                continue
+            final_wildcard += i
+        for i in str(hosts["first"]):
+            if i == ",":
+                final_firstip += "."
+                continue
+            final_firstip += i
+        for i in str(hosts["last"]):
+            if i == ",":
+                final_lastip += "."
+                continue
+            final_lastip += i
         for i in range(4):
             hosts["count"] += (hosts["last"][i] - hosts["first"][i]) * 2**(8*(3-i))
-        ctxt = {"address": addrString, "netmask": mask, "wildcard": wildcard, "host1": hosts["first"], "host2": hosts["last"], "count": hosts["count"]}
+        ctxt = {"address": addrString, "netmask": final_mask, "wildcard": final_wildcard, "host1": final_firstip, "host2": final_lastip, "count": hosts["count"]}
     return render(request, "cidr.html", ctxt)
+
+
+def epoch(request):
+    if request.method == 'POST':
+        epoch = request.POST.get("epoch")
+        time = datetime.datetime.fromtimestamp(float(epoch)/1000.)
+        time_utc = time.astimezone(pytz.utc)
+        ctxt = {"time": time.strftime("%Y-%m-%d %H:%M:%S"), "time_utc": time_utc.strftime("%Y-%m-%d %H:%M:%S")}
+        return render(request, "epoch.html", ctxt)
+    return render(request, "epoch.html")
 
 
 def disclaimer(request):
