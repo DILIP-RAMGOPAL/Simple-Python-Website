@@ -114,9 +114,9 @@ def cidr(request):
 def epoch(request):
     if request.method == 'POST':
         epoch = request.POST.get("epoch")
-        time = datetime.datetime.fromtimestamp(float(epoch)/1000.)
-        time_utc = time.astimezone(pytz.utc)
-        ctxt = {"time": time.strftime("%Y-%m-%d %H:%M:%S"), "time_utc": time_utc.strftime("%Y-%m-%d %H:%M:%S")}
+        time = datetime.datetime.fromtimestamp(float(epoch))
+        time_utc = time.astimezone(pytz.utc).strftime("%Y-%m-%d  %H:%M:%S")
+        ctxt = {"time": time.strftime("%Y-%m-%d  %H:%M:%S"), "time_utc": time_utc}
         return render(request, "epoch.html", ctxt)
     return render(request, "epoch.html")
 
