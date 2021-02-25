@@ -24,6 +24,8 @@ td {
     text-align: center;
     padding: 13px 1px;
     text-decoration: none;
+    background-color: white;
+    z-index: 1;
 }
 
 .dropdown .dropbtn {
@@ -44,6 +46,8 @@ td {
     position: absolute;
     min-width: 160px;
     z-index: 1;
+    background-color: white;
+    box-shadow: 0.1px 5px 10px 0px lightgrey;
 }
 
 .dropdown-content a {
