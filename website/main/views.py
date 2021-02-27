@@ -48,7 +48,7 @@ def convert_datetime_timezone(dt, tz1, tz2):
     dt = dt.replace(year=2021)
     dt = tz1.localize(dt)
     dt = dt.astimezone(tz2)
-    dt = dt.strftime("%H:%M %Y-%m-%d")
+    dt = dt.strftime("%H:%M %d-%m-%Y")
     return dt
 
 

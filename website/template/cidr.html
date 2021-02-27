@@ -16,15 +16,58 @@
 	    <a style="color: black; text-decoration: none;" href="/">Back</a>
 	</div>
 	{% else %}
-	<div style="width:350px;height:350px;border:1px solid grey; padding: 10px; margin: 30px;">
-	    <h2>Address : {{address}}</h2>
-	    <h2>Netmask : {{netmask}}</h2>
-	    <h2>Wildcard : {{wildcard}}</h2>
-	    <h2>FirstIP : {{host1}}</h2>
-	    <h2>LastIP : {{host2}}</h2>
-	    <h2>Count : {{count}}</h2><br>
+	<center>
+	
+	    <table>
+		<tr>
+		    <th>
+			<h2>Address</h2>
+		    </th>
+		    <th>
+			<h2>Netmask</h2>
+		    </th>
+		    <th>
+			<h2>Wildcard</h2>
+		    </th>
+		</tr>
+		<tr>
+		    <td>
+			<h4>{{address}}</h2>
+		    </td>
+		    <td>
+			<h4>{{netmask}}</h2>
+		    </td>
+		    <td>
+			<h4>{{wildcard}}</h2>
+		    </td>
+		</tr>
+		<tr>
+		    <th>
+			<h2>FirstIP</h2>
+		    </th>
+		    <th>
+			<h2>LastIP</h2>
+		    </th>
+		    <th>
+			<h2>Count</h2>
+		    </th>
+		</tr>
+		<tr>
+		    <td>
+			<h4>{{host1}}</h2>
+		    </td>
+		    <td>
+			<h4>{{host2}}</h2>
+		    </td>
+		    <td>
+			<h4>{{count}}</h2>
+		    </td>
+		</tr>
+	    </table>
+	    
+	    <br>
 	    <a style="color: black; text-decoration: none;" href="cidr">Back</a>
-	</div>
+	</center>
 	{% endif %}
 	
     </body>
