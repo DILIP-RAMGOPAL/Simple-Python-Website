@@ -11,10 +11,10 @@
 		{% csrf_token %}
 		<div class="input-container">
 		    <h2>Enter a epoch number:</h2>
-		    <input type="text" name="epoch" required><br><br><br>
+		    <input type="text" name="epoch" required><br><br>
 		</div>
-		<input class="btn" type="submit" name="submit" value="Epoch timestamp" style="border: none; font-size:25px"><br><br><br><br>
-	    </form>
+		<button type="submit"><span>Calculate </span></button>
+	    </form><br>
 	    <a style="color: black; text-decoration: none;" href="/">Back</a>
 	</div>
 	{% else %}
