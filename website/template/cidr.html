@@ -18,54 +18,37 @@
 	{% else %}
 	<center>
 	
-	    <table>
+	    <table style="border: 10px solid black; width: 1000px">
 		<tr>
-		    <th>
-			<h2>Address</h2>
+		    <th style="border: 10px solid black;">
+			<h2>Address</h2><br>
+			<h4>{{address}}</h4>
 		    </th>
-		    <th>
-			<h2>Netmask</h2>
+		    <th style="border: 10px solid black;">
+			<h2>Netmask</h2><br>
+			<h4>{{netmask}}</h4>
 		    </th>
-		    <th>
-			<h2>Wildcard</h2>
+		    <th style="border: 10px solid black;">
+			<h2>Wildcard</h2><br>
+			<h4>{{wildcard}}</h4>
 		    </th>
 		</tr>
 		<tr>
-		    <td>
-			<h4>{{address}}</h2>
-		    </td>
-		    <td>
-			<h4>{{netmask}}</h2>
-		    </td>
-		    <td>
-			<h4>{{wildcard}}</h2>
-		    </td>
-		</tr>
-		<tr>
-		    <th>
-			<h2>FirstIP</h2>
+		    <th style="border: 10px solid black;">
+			<h2>FirstIP</h2><br>
+			<h4>{{host1}}</h4>
 		    </th>
-		    <th>
-			<h2>LastIP</h2>
+		    <th style="border: 10px solid black;">
+			<h2>LastIP</h2><br>
+			<h4>{{host2}}</h4>
 		    </th>
-		    <th>
-			<h2>Count</h2>
+		    <th style="border: 10px solid black;">
+			<h2>Count</h2><br>
+			<h4>{{count}}</h4>
 		    </th>
-		</tr>
-		<tr>
-		    <td>
-			<h4>{{host1}}</h2>
-		    </td>
-		    <td>
-			<h4>{{host2}}</h2>
-		    </td>
-		    <td>
-			<h4>{{count}}</h2>
-		    </td>
 		</tr>
 	    </table>
-	    
-	    <br>
+	    <br><br><br>
 	    <a style="color: black; text-decoration: none;" href="cidr">Back</a>
 	</center>
 	{% endif %}

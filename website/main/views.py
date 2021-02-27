@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from datetime import date
+from geolite2 import geolite2
 import datetime
 import pytz
 import os
@@ -9,20 +10,24 @@ import reverse_geocoder as rg
 
 def homepage(request):
     now = datetime.datetime.now()
-    my_tz_name = '/'.join(os.path.realpath('/etc/localtime').split('/')[-2:])
-    my_tz = pytz.timezone(my_tz_name)
-    now = now.astimezone(my_tz)
-    current_time = now.strftime("%I:%M")
-    current_seconds = now.strftime(":%S %P")
-    timezone = my_tz
+    x = geolite2.reader().get(request.META.get("REMOTE_ADDR"))
+    if x is None:
+        my_tz_name = '/'.join(os.path.realpath('/etc/localtime').split('/')[-2:])
+        timezone = pytz.timezone(my_tz_name)
+        g = geocoder.ip('me')
+        result = rg.search(g.latlng)
+        result_place = result[0]["name"]
+        result_district = result[0]["admin1"]
+        result_state = result[0]["admin2"]
+    else:
+        timezone = x.timezone
+        result_place = x.country
     today = date.today()
     date_day = today.strftime("%A")
     date_date = today.strftime("%d %B %Y %Z")
-    g = geocoder.ip('me')
-    result = rg.search(g.latlng)
-    result_place = result[0]["name"]
-    result_district = result[0]["admin1"]
-    result_state = result[0]["admin2"]
+    now = now.astimezone(timezone)
+    current_time = now.strftime("%I:%M")
+    current_seconds = now.strftime(":%S %P")
     ctxt = {"time": current_time, "current_seconds": current_seconds, "timezone": timezone, "date": date_day, "date_date": date_date, "g": result_place, "result_district": result_district, "result_state": result_state}
     return render(request, "index.html", ctxt)
 
@@ -45,7 +50,6 @@ def convert_datetime_timezone(dt, tz1, tz2):
     tz1 = pytz.timezone(tz1)
     tz2 = pytz.timezone(tz2)
     dt = datetime.datetime.strptime(dt, "%H:%M %Y-%m-%d")
-    dt = dt.replace(year=2021)
     dt = tz1.localize(dt)
     dt = dt.astimezone(tz2)
     dt = dt.strftime("%H:%M %d-%m-%Y")
@@ -117,11 +121,18 @@ def epoch(request):
     if request.method == 'POST':
         epoch = request.POST.get("epoch")
         try:
-            time = datetime.datetime.fromtimestamp(float(epoch))
+            x = geolite2.reader().get(request.META.get("REMOTE_ADDR"))
+            if x is None:
+                time = datetime.datetime.fromtimestamp(float(epoch))
+                my_tz_name = '/'.join(os.path.realpath('/etc/localtime').split('/')[-2:])
+                my_tz = pytz.timezone(my_tz_name)
+            else:
+                my_tz = x.timezone
+            time = time.astimezone(my_tz)
         except ValueError:
             return render(request, "epoch.html", {"msg": "value error"})
-        time_utc = time.astimezone(pytz.utc).strftime("%Y-%m-%d  %H:%M:%S")
-        ctxt = {"time": time.strftime("%Y-%m-%d  %H:%M:%S"), "time_utc": time_utc}
+        time_utc = time.astimezone(pytz.utc).strftime("%H:%M:%S : %d-%m-%Y")
+        ctxt = {"time": time.strftime("%H:%M:%S : %d-%m-%Y"), "time_utc": time_utc}
         return render(request, "epoch.html", ctxt)
     return render(request, "epoch.html")
 

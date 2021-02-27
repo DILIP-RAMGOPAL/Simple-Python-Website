@@ -1,0 +1,97 @@
+.navbar{
+position: absolute;
+width: 1440px;
+height: 85px;
+left: 0px;
+top: 0px;
+background: rgba(2, 2, 2, 0.73);
+}
+
+.clock{
+position: absolute;
+width: 400px;
+height: 394px;
+left: 533px;
+top: 217px;
+background: #000000;
+mix-blend-mode: normal;
+border: 6px solid green;
+}
+
+.blackdesign{
+position: absolute;
+width: 415px;
+height: 1440px;
+left: 1440px;
+top: 85px;
+background: #000000;
+transform: rotate(90deg);
+}
+
+.logo{
+position: absolute;
+width: 174px;
+height: 51px;
+left: 140px;
+top: 18px;
+font-family: Edwardian Script ITC;
+font-style: normal;
+font-weight: normal;
+font-size: 43px;
+line-height: 51px;
+text-transform: capitalize;
+font-feature-settings: 'tnum' on, 'lnum' on;
+color: #3692FF;
+border: 1px solid #3692FF;
+}
+
+.home{
+position: absolute;
+width: 52px;
+height: 26px;
+left: 881px;
+top: 29px;
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 21px;
+text-transform: capitalize;
+color: #3692FF;
+}
+
+
+/* converter */
+.content{
+position: absolute;
+width: 86px;
+height: 26px;
+left: 978px;
+top: 29px;
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 21px;
+text-transform: capitalize;
+color: #F3F3F3;
+display: inline;
+}
+
+
+/* disclaimer */
+.disclaimer{
+position: absolute;
+width: 93px;
+height: 26px;
+left: 1109px;
+top: 29px;
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 21px;
+text-transform: capitalize;
+color: #F3F3F3;
+}
+

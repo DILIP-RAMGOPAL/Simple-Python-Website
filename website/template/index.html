@@ -53,41 +53,42 @@
     <body>
 	<div class="navbar">
 	    <table>
-	    <thead>
-		<tr>
-		    <th>
-			<a href="/" text-decoration: none;">
-			    <img src={% static "images/logo.jpg" %}></img>
-			</a>
-		    </th>
-		    <td>
-			<a class="content" style="text-decoration: none;" href="/">Home</a>
-		    </td>
-		    <td>
-			<div class="dropdown" >
-			    <button class="dropbtn">Converter</button>
-			    <div class="dropdown-content">
-				<a href="timezone">Time Converter</a>
-				<a href="cidr">CIDR Calculator</a>
-				<a href="epoch">Epoch timestamp</a>
+		<thead>
+		    <tr>
+			<th class="logo">
+			    <a href="/" text-decoration: none;">
+				<img src={% static "images/logo.jpg" %}></img>
+			    </a>
+			</th>
+			<td>
+			    <a class="content" style="text-decoration: none;" href="/" >Home</a>
+			</td>
+			<td>
+			    <div class="dropdown" class="converter">
+				<button class="dropbtn">Converter</button>
+				<div class="dropdown-content">
+				    <a href="timezone">Time Converter</a>
+				    <a href="cidr">CIDR Calculator</a>
+				    <a href="epoch">Epoch timestamp</a>
+				</div>
 			    </div>
-			</div>
-		    </td>
-		    <td>
-			<a class="content" href="disclaimer" style="text-decoration: none;">Disclaimer</a>
-		    </td>
-		</tr>
-	    </thead>
-	</table>
+			</td>
+			<td>
+			    <a class="content" href="disclaimer" style="text-decoration: none;" class="disclaimer">Disclaimer</a>
+			</td>
+		    </tr>
+		</thead>
+	    </table>
 	</div>
 	{% block content %}
+	<div class="blackdesign">
+	</div>
 	<center>
-	    <div style="width:350px;height:170px;border:1px solid grey; padding: 10px; margin: 30px;">
-		<div style="text-align: left;">
+	    <div class="clock" style="top: 185px; width:350px;height:170px;border:1px solid grey; padding: 10px; margin: 30px;">
 		    <p style="padding: 0 20px; font-size:50px; display: inline;" id="demo"/><p style="font-size:25px; color: grey; display: inline;" align="right" id="sec"/>
-		    <p style="padding: 0 20px; color: grey"><br>{{date}}, {{date_date}} ({{timezone}})</p>
+		    <p style="padding: 0 20px; color: grey"><br>{{date}}, {{date_date}}<br> ({{timezone}})</p>
 		    <p style="padding: 0 20px; color: grey">{{g}}, {{result_state}}, {{result_district}}</p>
-		</div>
+		
 	    </div>
 	</center>
 	<br><br><br><br>
@@ -113,7 +114,6 @@
 			    <img src={% static "images/epoch.png" %} width="200" height="200"></img>
 			</a>
 		    </th>
-
 		</tr>
 		<tr>
 		    <th>
