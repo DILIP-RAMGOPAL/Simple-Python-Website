@@ -20,8 +20,8 @@ def homepage(request):
         result_district = result[0]["admin1"]
         result_state = result[0]["admin2"]
     else:
-        timezone = x.timezone
-        result_place = x.country
+        timezone = x['location']['time_zone']
+        result_place = x['country']['names']['en']
     today = date.today()
     date_day = today.strftime("%A")
     date_date = today.strftime("%d %B %Y %Z")
