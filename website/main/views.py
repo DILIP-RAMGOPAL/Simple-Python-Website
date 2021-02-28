@@ -10,7 +10,7 @@ import reverse_geocoder as rg
 
 def homepage(request):
     now = datetime.datetime.now()
-    x = geolite2.reader().get(request.META.get("REMOTE_ADDR"))
+    x = geolite2.reader().get(request.environ.get('HTTP_X_FORWARDED_FOR') or request.environ.get('REMOTE_ADDR'))
     if x is None:
         my_tz_name = '/'.join(os.path.realpath('/etc/localtime').split('/')[-2:])
         timezone = pytz.timezone(my_tz_name)
