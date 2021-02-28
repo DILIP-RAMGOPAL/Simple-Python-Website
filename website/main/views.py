@@ -16,7 +16,6 @@ def homepage(request):
         my_tz_name = '/'.join(os.path.realpath('/etc/localtime').split('/')[-2:])
         g = geocoder.ip('me')
         result = rg.search(g.latlng)
-        import pdb;pdb.set_trace()
         result_place = result[0]["name"]
         result_district = result[0]["admin1"]
         result_state = result[0]["admin2"]
@@ -26,8 +25,6 @@ def homepage(request):
         latlag.append(x['location']['latitude'])
         latlag.append(x['location']['longitude'])
         result = rg.search(latlag)
-        result_district = ""
-        result_state = ""
     result_district = result[0]["admin1"]
     result_state = result[0]["admin2"]
     timezone = pytz.timezone(my_tz_name)
