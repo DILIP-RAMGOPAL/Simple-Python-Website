@@ -21,6 +21,8 @@ def homepage(request):
     else:
         my_tz_name = x['location']['time_zone']
         result_place = x['country']['names']['en']
+        result_district = ""
+        result_state = ""
     timezone = pytz.timezone(my_tz_name)
     today = date.today()
     date_day = today.strftime("%A")
