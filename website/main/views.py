@@ -13,15 +13,15 @@ def homepage(request):
     x = geolite2.reader().get(request.environ.get('HTTP_X_FORWARDED_FOR') or request.environ.get('REMOTE_ADDR'))
     if x is None:
         my_tz_name = '/'.join(os.path.realpath('/etc/localtime').split('/')[-2:])
-        timezone = pytz.timezone(my_tz_name)
         g = geocoder.ip('me')
         result = rg.search(g.latlng)
         result_place = result[0]["name"]
         result_district = result[0]["admin1"]
         result_state = result[0]["admin2"]
     else:
-        timezone = x['location']['time_zone']
+        my_tz_name = x['location']['time_zone']
         result_place = x['country']['names']['en']
+    timezone = pytz.timezone(my_tz_name)
     today = date.today()
     date_day = today.strftime("%A")
     date_date = today.strftime("%d %B %Y %Z")
