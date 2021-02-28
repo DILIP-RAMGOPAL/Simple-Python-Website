@@ -17,8 +17,6 @@ def homepage(request):
         g = geocoder.ip('me')
         result = rg.search(g.latlng)
         result_place = result[0]["name"]
-        result_district = result[0]["admin1"]
-        result_state = result[0]["admin2"]
     else:
         my_tz_name = x['location']['time_zone']
         result_place = x['country']['names']['en']
@@ -128,8 +126,8 @@ def epoch(request):
         epoch = request.POST.get("epoch")
         try:
             x = geolite2.reader().get(request.environ.get('HTTP_X_FORWARDED_FOR') or request.environ.get('REMOTE_ADDR'))
+            time = datetime.datetime.fromtimestamp(float(epoch))
             if x is None:
-                time = datetime.datetime.fromtimestamp(float(epoch))
                 my_tz_name = '/'.join(os.path.realpath('/etc/localtime').split('/')[-2:])
                 my_tz = pytz.timezone(my_tz_name)
             else:
