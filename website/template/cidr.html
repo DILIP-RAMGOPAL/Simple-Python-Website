@@ -8,7 +8,7 @@
 	    <form method="POST" action="cidr">
 		{% csrf_token %}
 		<div class="input-container">
-		    <h2>Enter a Cidr range:</h2>
+		    <h2>Enter a CIDR Range</h2>
 		    <input type="text" name="cidr" required><br><br>
 		</div>
 		<button type="submit"><span>Calculate </span></button>
@@ -35,15 +35,15 @@
 		</tr>
 		<tr>
 		    <th style="border: 10px solid black;">
-			<h2>FirstIP</h2><br>
+			<h2>First IP</h2><br>
 			<h4>{{host1}}</h4>
 		    </th>
 		    <th style="border: 10px solid black;">
-			<h2>LastIP</h2><br>
+			<h2>Last IP</h2><br>
 			<h4>{{host2}}</h4>
 		    </th>
 		    <th style="border: 10px solid black;">
-			<h2>Count</h2><br>
+			<h2>IPs in Range</h2><br>
 			<h4>{{count}}</h4>
 		    </th>
 		</tr>

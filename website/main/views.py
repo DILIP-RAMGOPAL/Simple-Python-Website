@@ -12,27 +12,25 @@ def homepage(request):
     now = datetime.datetime.now()
     x = geolite2.reader().get(request.environ.get('HTTP_X_FORWARDED_FOR') or request.environ.get('REMOTE_ADDR'))
     latlag = []
-    if x is None:
-        my_tz_name = '/'.join(os.path.realpath('/etc/localtime').split('/')[-2:])
-        g = geocoder.ip('me')
-        result = rg.search(g.latlng)
-        result_place = result[0]["name"]
-    else:
+    try:
         my_tz_name = x['location']['time_zone']
-        result_place = x['country']['names']['en']
+        result_state = x['country']['names']['en']
         latlag.append(x['location']['latitude'])
         latlag.append(x['location']['longitude'])
         result = rg.search(latlag)
+    except KeyError:
+        my_tz_name = '/'.join(os.path.realpath('/etc/localtime').split('/')[-2:])
+        g = geocoder.ip('me')
+        result = rg.search(g.latlng)
+        result_state = result[0]["name"]
     result_district = result[0]["admin1"]
-    result_state = result[0]["admin2"]
+    result_place = result[0]["admin2"]
     timezone = pytz.timezone(my_tz_name)
     today = date.today()
     date_day = today.strftime("%A")
     date_date = today.strftime("%d %B %Y %Z")
     now = now.astimezone(timezone)
-    current_time = now.strftime("%I:%M")
-    current_seconds = now.strftime(":%S %P")
-    ctxt = {"time": current_time, "current_seconds": current_seconds, "timezone": timezone, "date": date_day, "date_date": date_date, "g": result_place, "result_district": result_district, "result_state": result_state}
+    ctxt = {"timezone": timezone, "date": date_day, "date_date": date_date, "g": result_place, "result_district": result_district, "result_state": result_state}
     return render(request, "index.html", ctxt)
 
 

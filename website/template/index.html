@@ -10,6 +10,9 @@
 	 var myVar = setInterval(myTimer, 1000);
 	 function myTimer() {
 	     var d = new Date();
+	     var tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+	     var intlDateObj = new Intl.DateTimeFormat('en-US', {timeZone: tz}); 
+	     var n = intlDateObj.format(d);
 	     var hrs = d.getHours();
 	     var min = d.getMinutes();
 	     var sec = d.getSeconds();
@@ -38,13 +41,13 @@
 	     else{
 		 document.getElementById("sec").innerHTML = ":" + sec + " " + en;
 	     }
-	 }
+	 }  
 	 function timezone_converter(color) {
 	     document.getElementById('timezone_converter').style.color = color;
 	 }
 	 function cidr_calculator(color) {
 	     document.getElementById('cidr_calculator').style.color = color;
-	 }
+	 }  
 	 function epoch_converter(color) {
 	     document.getElementById('epoch_converter').style.color = color;
 	 }
