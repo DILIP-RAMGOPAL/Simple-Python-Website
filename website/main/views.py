@@ -132,7 +132,7 @@ def epoch(request):
                 my_tz_name = x['location']['time_zone']
                 my_tz = pytz.timezone(my_tz_name)
             time = time.astimezone(my_tz)
-        except ValueError:
+        except (ValueError, KeyError):
             return render(request, "epoch.html", {"msg": "value error"})
         time_utc = time.astimezone(pytz.utc).strftime("%H:%M:%S : %d-%m-%Y")
         ctxt = {"time": time.strftime("%H:%M:%S : %d-%m-%Y"), "time_utc": time_utc}
