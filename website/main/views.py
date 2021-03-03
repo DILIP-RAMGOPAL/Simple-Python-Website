@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from datetime import date
 from geolite2 import geolite2
+from json import dumps
 import datetime
 import pytz
 import os
 import geocoder
 import reverse_geocoder as rg
+from timezonefinder import TimezoneFinder
 
 
 def homepage(request):
@@ -19,9 +21,10 @@ def homepage(request):
         latlag.append(x['location']['longitude'])
         result = rg.search(latlag)
     except (TypeError, KeyError):
-        my_tz_name = '/'.join(os.path.realpath('/etc/localtime').split('/')[-2:])
         g = geocoder.ip('me')
+        tf = TimezoneFinder()
         result = rg.search(g.latlng)
+        my_tz_name = tf.timezone_at(lng=float(result[0]['lon']), lat=float(result[0]['lat']))
         result_state = result[0]["name"]
     result_district = result[0]["admin1"]
     result_place = result[0]["admin2"]
@@ -30,7 +33,8 @@ def homepage(request):
     date_day = today.strftime("%A")
     date_date = today.strftime("%d %B %Y %Z")
     now = now.astimezone(timezone)
-    ctxt = {"timezone": timezone, "date": date_day, "date_date": date_date, "g": result_place, "result_district": result_district, "result_state": result_state}
+    dataJSON = dumps(my_tz_name)
+    ctxt = {"timezone": timezone, "data": dataJSON, "date": date_day, "date_date": date_date, "g": result_place, "result_district": result_district, "result_state": result_state}
     return render(request, "index.html", ctxt)
 
 
