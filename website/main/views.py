@@ -18,7 +18,7 @@ def homepage(request):
         latlag.append(x['location']['latitude'])
         latlag.append(x['location']['longitude'])
         result = rg.search(latlag)
-    except KeyError:
+    except (TypeError, KeyError):
         my_tz_name = '/'.join(os.path.realpath('/etc/localtime').split('/')[-2:])
         g = geocoder.ip('me')
         result = rg.search(g.latlng)
