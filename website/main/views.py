@@ -130,7 +130,10 @@ def epoch(request):
             x = geolite2.reader().get(request.environ.get('HTTP_X_FORWARDED_FOR') or request.environ.get('REMOTE_ADDR'))
             time = datetime.datetime.fromtimestamp(float(epoch))
             if x is None:
-                my_tz_name = '/'.join(os.path.realpath('/etc/localtime').split('/')[-2:])
+                g = geocoder.ip('me')
+                tf = TimezoneFinder()
+                result = rg.search(g.latlng)
+                my_tz_name = tf.timezone_at(lng=float(result[0]['lon']), lat=float(result[0]['lat']))
                 my_tz = pytz.timezone(my_tz_name)
             else:
                 my_tz_name = x['location']['time_zone']
@@ -139,7 +142,7 @@ def epoch(request):
         except (ValueError, KeyError):
             return render(request, "epoch.html", {"msg": "value error"})
         time_utc = time.astimezone(pytz.utc).strftime("%H:%M:%S : %d-%m-%Y")
-        ctxt = {"time": time.strftime("%H:%M:%S : %d-%m-%Y"), "time_utc": time_utc}
+        ctxt = {"time": time.strftime("%H:%M:%S : %d-%m-%Y"), "time_utc": time_utc, "timezone": my_tz}
         return render(request, "epoch.html", ctxt)
     return render(request, "epoch.html")
 
