@@ -2,7 +2,7 @@
 {% load static %}
 <html>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href={% static "css/index4.css" %}>
+    <link rel="stylesheet" type="text/css" href={% static "css/index.css" %}>
     <head>
 	<title>AllInOneConvertor</title>
 	<meta charset="utf-8">
@@ -54,7 +54,7 @@
     </head>
     <body>
 	<div class="navbar">
-	    <table>
+	    <table >
 		<thead>
 		    <tr>
 			<th class="logo">
@@ -87,13 +87,13 @@
 	</div>
 	<center>
 	    <div class="clock" style="top: 185px; width:350px;height:170px;border:1px solid grey; padding: 10px; margin: 30px;">
-		    <p style="padding: 0 20px; font-size:50px; display: inline;" id="demo"/><p style="font-size:25px; color: grey; display: inline;" align="right" id="sec"/>
-		    <p style="padding: 0 20px; color: grey"><br>{{date}}, {{date_date}}<br> ({{timezone}})</p>
-		    {% if g %}
-		    <p style="padding: 0 20px; color: grey">{{g}}, {{result_state}}, {{result_district}}</p>
-		    {% else %}
-		    <p style="padding: 0 20px; color: grey">{{result_state}}, {{result_district}}</p>
-		    {% endif %}
+		<p style="padding: 0 20px; font-size:50px; display: inline;" id="demo"/><p style="font-size:25px; color: grey; display: inline;" align="right" id="sec"/>
+		<p style="padding: 0 20px; color: grey"><br>{{date}}, {{date_date}}<br> ({{timezone}})</p>
+		{% if g %}
+		<p style="padding: 0 20px; color: grey">{{g}}, {{result_state}}, {{result_district}}</p>
+		{% else %}
+		<p style="padding: 0 20px; color: grey">{{result_state}}, {{result_district}}</p>
+		{% endif %}
 	    </div>
 	</center>
 	<br><br><br><br>
